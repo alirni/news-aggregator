@@ -67,7 +67,7 @@ export const NewsFeed = () => {
       {mockArticles.length === 0 ? (
         <p>No articles found. </p>
       ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {mockArticles.map((article) => (
             <ArticleCard key={article.id} article={article} />
           ))}
