@@ -1,13 +1,6 @@
+import { Article } from '@/types';
+
 export interface ArticleCardProps {
-  article: {
-    id: number;
-    title: string;
-    excerpt: string;
-    fullContent: string;
-    source: string;
-    category: string;
-    author: string;
-    date: string;
-    imageUrl?: string;
-  };
+  article: Article;
+  onShowMore: (article: Article) => void;
 }
