@@ -1,9 +1,9 @@
-import { Button } from '@/components/ui/button';
+import { Header } from '@/components';
 
 export default function Home() {
   return (
-    <div>
-      <Button className="w-full">Test</Button>
+    <div className="min-h-screen flex flex-col">
+      <Header title="News Aggregator" />
     </div>
   );
 }
