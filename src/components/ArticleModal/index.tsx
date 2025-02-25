@@ -58,13 +58,14 @@ export const ArticleModal: FC<ArticleModalProps> = ({
                 <DialogHeader className="p-6">
                   <DialogTitle>{article.title}</DialogTitle>
                   <DialogDescription>
-                    By {article.author} | {article.date}
+                    By {article.author} |{' '}
+                    {new Date(article.publishedAt).toLocaleDateString()}
                   </DialogDescription>
                 </DialogHeader>
                 <ScrollArea className="flex-grow px-6 pb-6">
                   <div className="relative w-full h-64 mb-4">
                     <Image
-                      src={article.imageUrl || '/placeholder.svg'}
+                      src={article.urlToImage || '/placeholder.svg'}
                       alt={article.title}
                       fill
                       style={{ objectFit: 'cover' }}
@@ -73,12 +74,8 @@ export const ArticleModal: FC<ArticleModalProps> = ({
                   </div>
                   <div className="flex gap-2 mb-4">
                     <Badge variant="secondary">{article.source}</Badge>
-                    <Badge variant="outline">{article.category}</Badge>
                   </div>
-                  <p className="text-muted-foreground mb-4">
-                    {article.excerpt}
-                  </p>
-                  <p>{article.fullContent}</p>
+                  <p>{article.description}</p>
                 </ScrollArea>
               </motion.div>
             </DialogContent>

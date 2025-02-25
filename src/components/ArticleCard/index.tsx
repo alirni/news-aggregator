@@ -16,7 +16,7 @@ export const ArticleCard: FC<ArticleCardProps> = ({ article, onShowMore }) => {
       <CardHeader className="p-0">
         <div className="relative w-full h-48">
           <Image
-            src={article.imageUrl || '/placeholder.svg'}
+            src={article.urlToImage || '/placeholder.svg'}
             alt={article.title}
             fill
             style={{ objectFit: 'cover' }}
@@ -28,7 +28,9 @@ export const ArticleCard: FC<ArticleCardProps> = ({ article, onShowMore }) => {
         <CardTitle className="line-clamp-2 mb-2 text-xl">
           {article.title}
         </CardTitle>
-        <p className="text-muted-foreground line-clamp-3">{article.excerpt}</p>
+        <p className="text-muted-foreground line-clamp-2">
+          {article.description}
+        </p>
         <div
           className="text-blue-500 cursor-pointer mt-2 hover:text-blue-600 w-fit"
           onClick={() => onShowMore(article)}
@@ -39,7 +41,9 @@ export const ArticleCard: FC<ArticleCardProps> = ({ article, onShowMore }) => {
       <CardFooter className="flex flex-wrap justify-between items-center gap-2 p-4">
         <div className="flex gap-2">
           <Badge variant="secondary">{article.source}</Badge>
-          <Badge variant="outline">{article.category}</Badge>
+          <Badge variant="outline">
+            {new Date(article.publishedAt).toLocaleDateString()}
+          </Badge>
         </div>
       </CardFooter>
     </Card>
