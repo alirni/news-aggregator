@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { getNews } from '@/api';
 import { Header, NewsFeed, SearchAndFilter } from '@/components';
 import { NewsFeedPost } from '@/types';
+import { toast } from 'sonner';
 
 export default function Home() {
   const [posts, setPosts] = useState<NewsFeedPost[]>([]);
@@ -13,8 +14,8 @@ export default function Home() {
       try {
         const data = await getNews();
         setPosts(data);
-      } catch (error) {
-        console.error('Failed to load posts', error);
+      } catch {
+        toast.error('Failed to load posts.');
       }
     };
 

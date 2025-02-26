@@ -31,6 +31,10 @@ export function preparedRequestParams({
     queryParams.set('api-key', apiKey);
   }
 
+  if (sourceName === NewsResourcesEnum.NewyorkTimes) {
+    queryParams.set('api-key', apiKey);
+  }
+
   return { queryParams, params };
 }
 
@@ -60,6 +64,17 @@ export function calculateData(
       publishedAt: article.webPublicationDate,
       source: { name: sourceName },
       author: 'N/A',
+    }));
+  }
+
+  if (sourceName === NewsResourcesEnum.NewyorkTimes) {
+    articles = response.data.response?.docs.map((article: any) => ({
+      title: article.headline.main,
+      description: article.abstract,
+      url: article.web_url,
+      publishedAt: article.pub_date,
+      source: { name: article.source },
+      author: article.byline.original,
     }));
   }
 
