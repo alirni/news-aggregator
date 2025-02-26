@@ -60,11 +60,12 @@ export const SearchAndFilter: FC<SearchAndFilterProps> = ({
             ))}
           </SelectContent>
         </Select>
-        <Select value={source || ''} onValueChange={onChangeSource}>
+        <Select value={source} onValueChange={onChangeSource}>
           <SelectTrigger className="w-full sm:w-[180px]">
             <SelectValue placeholder="Filter by source" />
           </SelectTrigger>
           <SelectContent>
+            <SelectItem value={'all'}>All</SelectItem>
             {NewsResources.map(({ name, key }) => (
               <SelectItem key={key} value={key}>
                 {name}

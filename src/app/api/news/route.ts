@@ -12,7 +12,7 @@ export async function GET(req: Request): Promise<Response> {
 
     let result: PromiseSettledResult<NewsResponse>[] = [];
 
-    if (!searchParams.has('source')) {
+    if (!searchParams.has('source') || searchParams.get('source') === 'all') {
       result = await Promise.allSettled(
         NewsResources.map(async ({ key, name }): Promise<NewsResponse> => {
           const apiKey = process.env[`${key}_API_KEY`] || '';
