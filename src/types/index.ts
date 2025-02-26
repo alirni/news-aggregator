@@ -27,3 +27,9 @@ export interface NewsFeedPost {
   error?: string;
   source: string;
 }
+
+export enum NewsResourcesEnum {
+  NewsApi = 'NEWS_API',
+  TheGuardian = 'THE_GUARDIAN',
+  NewyorkTimes = 'NEWYORK_TIMES',
+}

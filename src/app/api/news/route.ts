@@ -1,44 +1,83 @@
 import { NextResponse } from 'next/server';
 import axios from 'axios';
 
-import { NewsResponse } from '@/types';
+import { NewsResourcesEnum, NewsResponse } from '@/types';
 import { calculateData, preparedRequestParams } from './service';
-import { NewsResources } from './const';
 import axiosInstance from './axiosInstance';
+import { NewsResources } from '@/const';
 
 export async function GET(req: Request): Promise<Response> {
   try {
     const { searchParams } = new URL(req.url);
 
-    const responses = await Promise.allSettled(
-      NewsResources.map(async ({ name }): Promise<NewsResponse> => {
-        const apiKey = process.env[`${name}_API_KEY`] || '';
-        const url = process.env[`${name}_BASE_URL`] || '';
+    let result: PromiseSettledResult<NewsResponse>[] = [];
 
-        const { queryParams, params } = preparedRequestParams({
-          searchParams,
-          sourceName: name,
-          apiKey,
-        });
+    if (!searchParams.has('source')) {
+      result = await Promise.allSettled(
+        NewsResources.map(async ({ key, name }): Promise<NewsResponse> => {
+          const apiKey = process.env[`${key}_API_KEY`] || '';
+          const url = process.env[`${key}_BASE_URL`] || '';
 
-        try {
-          const response = await axiosInstance.get<NewsResponse>(
-            `${url}?${queryParams}`,
-            { params }
-          );
+          const { queryParams, params } = preparedRequestParams({
+            searchParams,
+            sourceName: key,
+            apiKey,
+          });
 
-          return calculateData(response, name);
-        } catch (error) {
-          if (axios.isAxiosError(error)) {
-            return { source: name, error: error.message };
-          } else {
-            return { source: name, error: String(error) };
+          try {
+            const response = await axiosInstance.get<NewsResponse>(
+              `${url}?${queryParams}`,
+              { params }
+            );
+
+            return calculateData(response, key);
+          } catch (error) {
+            if (axios.isAxiosError(error)) {
+              return { source: name, error: error.message };
+            } else {
+              return { source: name, error: String(error) };
+            }
           }
-        }
-      })
-    );
+        })
+      );
+    } else {
+      result = await Promise.allSettled([
+        (async (): Promise<NewsResponse> => {
+          const source = searchParams.get('source') as NewsResourcesEnum;
+          const apiKey =
+            process.env[`${source}_API_KEY`] ||
+            process.env[`${source.toUpperCase()}_API_KEY`] ||
+            '';
+          const url =
+            process.env[`${source}_BASE_URL`] ||
+            process.env[`${source.toUpperCase()}_BASE_URL`] ||
+            '';
 
-    const aggregatedData: NewsResponse[] = responses
+          const { queryParams, params } = preparedRequestParams({
+            searchParams,
+            sourceName: source,
+            apiKey,
+          });
+
+          try {
+            const response = await axiosInstance.get<NewsResponse>(
+              `${url}?${queryParams}`,
+              { params }
+            );
+
+            return calculateData(response, source);
+          } catch (error) {
+            if (axios.isAxiosError(error)) {
+              return { source: source, error: error.message };
+            } else {
+              return { source: source, error: String(error) };
+            }
+          }
+        })(),
+      ]);
+    }
+
+    const aggregatedData: NewsResponse[] = result
       .filter((res) => res.status === 'fulfilled')
       .map((res) => (res as PromiseFulfilledResult<NewsResponse>).value);
 

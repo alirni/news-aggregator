@@ -1,6 +1,5 @@
 import { URLSearchParams } from 'url';
-import { NewsResponse, Article } from '@/types';
-import { NewsResourcesEnum } from './type';
+import { NewsResponse, Article, NewsResourcesEnum } from '@/types';
 
 export function preparedRequestParams({
   searchParams,
@@ -15,7 +14,6 @@ export function preparedRequestParams({
     q: searchParams.get('keyword') || 'tech',
     // from: searchParams.get('date') || '',
     // category: searchParams.get('category') || '',
-    // sources: searchParams.get('source') || '',
     // authors: searchParams.get('authors') || '',
     pageSize: searchParams.get('pageSize') || '20',
     page: searchParams.get('page') || '1',

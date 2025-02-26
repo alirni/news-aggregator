@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import {
@@ -10,12 +10,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Category, NewsResources } from '@/const';
+import { SearchAndFilterProps } from './type';
 
-export const SearchAndFilter = () => {
+export const SearchAndFilter: FC<SearchAndFilterProps> = ({
+  source,
+  onChangeSource,
+}) => {
   const [keyword, setKeyword] = useState('');
   const [date, setDate] = useState('');
   const [category, setCategory] = useState('');
-  const [source, setSource] = useState('');
 
   const handleSearch = () => {
     console.log('Search:', { keyword, date, category, source });
@@ -49,19 +53,23 @@ export const SearchAndFilter = () => {
             <SelectValue placeholder="Filter by category" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="technology">Technology</SelectItem>
-            <SelectItem value="politics">Politics</SelectItem>
-            <SelectItem value="sports">Sports</SelectItem>
+            {Category.map((item) => (
+              <SelectItem key={item} value={item.toLowerCase()}>
+                {item}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
-        <Select value={source} onValueChange={setSource}>
+        <Select value={source || ''} onValueChange={onChangeSource}>
           <SelectTrigger className="w-full sm:w-[180px]">
             <SelectValue placeholder="Filter by source" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="bbc">BBC</SelectItem>
-            <SelectItem value="cnn">CNN</SelectItem>
-            <SelectItem value="reuters">Reuters</SelectItem>
+            {NewsResources.map(({ name, key }) => (
+              <SelectItem key={key} value={key}>
+                {name}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </div>
