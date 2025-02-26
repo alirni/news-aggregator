@@ -5,6 +5,7 @@ import { ArticleCard } from '../ArticleCard';
 import { Article } from '@/types';
 import { ArticleModal } from '../ArticleModal';
 import { NewsFeedProps } from './type';
+import { toast } from 'sonner';
 
 export const NewsFeed: FC<NewsFeedProps> = ({ posts }) => {
   const [gatheredPosts, setGatheredPosts] = useState<Article[]>([]);
@@ -13,6 +14,11 @@ export const NewsFeed: FC<NewsFeedProps> = ({ posts }) => {
     if (posts.length) {
       const tempPosts: Article[] = [];
       Object.values(posts).forEach((post) => {
+        if (post.error) {
+          toast.error(`Failed to load ${post.source} article.`);
+          return;
+        }
+
         tempPosts.push(...post.articles);
       });
       setGatheredPosts(tempPosts);
