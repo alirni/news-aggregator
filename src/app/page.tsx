@@ -3,10 +3,10 @@
 import { useEffect, useState } from 'react';
 import { getNews } from '@/api';
 import { Header, NewsFeed, SearchAndFilter } from '@/components';
-import { Article } from '@/types';
+import { NewsFeedPost } from '@/types';
 
 export default function Home() {
-  const [posts, setPosts] = useState<{ articles: Article[] }[]>([]);
+  const [posts, setPosts] = useState<NewsFeedPost[]>([]);
 
   useEffect(() => {
     const getPosts = async () => {

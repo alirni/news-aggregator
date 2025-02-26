@@ -4,7 +4,9 @@ export interface NewsSource {
 }
 
 export interface Article {
-  source: string;
+  source: {
+    name: string;
+  };
   author: string;
   title: string;
   description: string;
@@ -18,4 +20,10 @@ export interface NewsResponse {
   response?: { docs: Article[] };
   articles?: Article[];
   error?: string;
+}
+
+export interface NewsFeedPost {
+  articles: Article[];
+  error?: string;
+  source: string;
 }

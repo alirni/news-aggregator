@@ -40,7 +40,7 @@ export const ArticleCard: FC<ArticleCardProps> = ({ article, onShowMore }) => {
       </CardContent>
       <CardFooter className="flex flex-wrap justify-between items-center gap-2 p-4">
         <div className="flex gap-2">
-          <Badge variant="secondary">{article.source}</Badge>
+          <Badge variant="secondary">{article.source.name}</Badge>
           <Badge variant="outline">
             {new Date(article.publishedAt).toLocaleDateString()}
           </Badge>

@@ -1,5 +1,5 @@
-import { Article } from '@/types';
+import { NewsFeedPost } from '@/types';
 
 export interface NewsFeedProps {
-  posts: { articles: Article[] }[];
+  posts: NewsFeedPost[];
 }

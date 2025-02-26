@@ -73,7 +73,7 @@ export const ArticleModal: FC<ArticleModalProps> = ({
                     />
                   </div>
                   <div className="flex gap-2 mb-4">
-                    <Badge variant="secondary">{article.source}</Badge>
+                    <Badge variant="secondary">{article.source.name}</Badge>
                   </div>
                   <p>{article.description}</p>
                 </ScrollArea>
