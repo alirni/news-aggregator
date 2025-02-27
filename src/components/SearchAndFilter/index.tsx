@@ -16,10 +16,11 @@ import { SearchAndFilterProps } from './type';
 export const SearchAndFilter: FC<SearchAndFilterProps> = ({
   source,
   onChangeSource,
+  category,
+  onChangeCategory,
 }) => {
   const [keyword, setKeyword] = useState('');
   const [date, setDate] = useState('');
-  const [category, setCategory] = useState('');
 
   const handleSearch = () => {
     console.log('Search:', { keyword, date, category, source });
@@ -48,7 +49,7 @@ export const SearchAndFilter: FC<SearchAndFilterProps> = ({
             <SelectItem value="this-month">This Month</SelectItem>
           </SelectContent>
         </Select>
-        <Select value={category} onValueChange={setCategory}>
+        <Select value={category} onValueChange={onChangeCategory}>
           <SelectTrigger className="w-full sm:w-[180px]">
             <SelectValue placeholder="Filter by category" />
           </SelectTrigger>

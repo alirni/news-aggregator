@@ -11,10 +11,8 @@ export function preparedRequestParams({
   apiKey: string;
 }): { queryParams: string | URLSearchParams; params: Record<string, unknown> } {
   const queryParams: string | URLSearchParams = new URLSearchParams({
-    q: searchParams.get('keyword') || 'tech',
+    q: searchParams.get('category') || 'tech',
     // from: searchParams.get('date') || '',
-    // category: searchParams.get('category') || '',
-    // authors: searchParams.get('authors') || '',
     pageSize: searchParams.get('pageSize') || '20',
     page: searchParams.get('page') || '1',
   });

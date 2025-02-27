@@ -6,4 +6,4 @@ export const NewsResources = [
   { name: 'New York Times', key: NewsResourcesEnum.NewyorkTimes },
 ];
 
-export const Category = ['Technology', 'Politics', 'Sports'];
+export const Category = ['Technology', 'AI', 'Football', 'Game'];

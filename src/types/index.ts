@@ -33,3 +33,5 @@ export enum NewsResourcesEnum {
   TheGuardian = 'THE_GUARDIAN',
   NewyorkTimes = 'NEWYORK_TIMES',
 }
+
+export type CategoryType = 'Technology' | 'AI' | 'Football' | 'Game';
