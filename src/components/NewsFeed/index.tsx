@@ -7,7 +7,7 @@ import { ArticleModal } from '../ArticleModal';
 import { NewsFeedProps } from './type';
 import { toast } from 'sonner';
 
-export const NewsFeed: FC<NewsFeedProps> = ({ posts }) => {
+export const NewsFeed: FC<NewsFeedProps> = ({ posts, isLoading }) => {
   const [gatheredPosts, setGatheredPosts] = useState<Article[]>([]);
 
   useEffect(() => {
@@ -35,15 +35,19 @@ export const NewsFeed: FC<NewsFeedProps> = ({ posts }) => {
     setSelectedArticle(null);
   };
 
+  if (isLoading) {
+    return <p>Loading articles...</p>;
+  }
+
   return (
     <div className="overflow-auto flex-grow">
       {gatheredPosts.length === 0 ? (
         <p>No articles found. </p>
       ) : (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {gatheredPosts.map((article) => (
+          {gatheredPosts.map((article, index) => (
             <ArticleCard
-              key={article.title}
+              key={`${article.title}/${index}`}
               article={article}
               onShowMore={handleShowMore}
             />

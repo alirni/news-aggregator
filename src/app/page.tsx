@@ -10,6 +10,7 @@ export default function Home() {
   const [posts, setPosts] = useState<NewsFeedPost[]>([]);
   const [source, setSource] = useState<NewsResourcesEnum>();
   const [category, setCategory] = useState<CategoryType>();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getPosts();
@@ -17,10 +18,13 @@ export default function Home() {
 
   const getPosts = async () => {
     try {
+      setIsLoading(true);
       const data = await getNews({ source, category });
       setPosts(data);
+      setIsLoading(false);
     } catch {
       toast.error('Failed to load posts.');
+      setIsLoading(false);
     }
   };
 
@@ -42,7 +46,7 @@ export default function Home() {
           onChangeSource={onChangeSourceHandler}
           onChangeCategory={onChangeCategoryHandler}
         />
-        <NewsFeed posts={posts} />
+        <NewsFeed posts={posts} isLoading={isLoading} />
       </main>
     </div>
   );
