@@ -20,6 +20,32 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Running the Project with Docker
+
+To build and run the project within a Docker container, follow these steps:
+
+1. **Build the Docker image:**
+
+    ```sh
+    docker-compose build
+    ```
+
+2. **Run the Docker container:**
+
+    ```sh
+    docker-compose up
+    ```
+
+3. The application should now be running and accessible at `http://localhost:3000`.
+
+4. **Stopping the Docker container:**
+
+    To stop the running container, press `Ctrl+C` in the terminal where `docker-compose up` is running, or run:
+
+    ```sh
+    docker-compose down
+    ```
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
