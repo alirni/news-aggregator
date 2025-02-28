@@ -1,8 +1,3 @@
-export interface NewsSource {
-  name: string;
-  url: string;
-}
-
 export interface Article {
   source: {
     name: string;
@@ -26,12 +21,6 @@ export interface NewsFeedPost {
   articles: Article[];
   error?: string;
   source: string;
-}
-
-export enum NewsResourcesEnum {
-  NewsApi = 'NEWS_API',
-  TheGuardian = 'THE_GUARDIAN',
-  NewyorkTimes = 'NEWYORK_TIMES',
 }
 
 export type CategoryType = 'Technology' | 'AI' | 'Football' | 'Game';

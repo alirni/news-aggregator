@@ -1,8 +1,6 @@
 'use client';
 
-import { FC, useState } from 'react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+import { FC } from 'react';
 import {
   Select,
   SelectContent,
@@ -10,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Category, NewsResources } from '@/const';
+import { Category, DateFilter, NewsResources } from '@/const';
 import { SearchAndFilterProps } from './type';
 
 export const SearchAndFilter: FC<SearchAndFilterProps> = ({
@@ -18,35 +16,22 @@ export const SearchAndFilter: FC<SearchAndFilterProps> = ({
   onChangeSource,
   category,
   onChangeCategory,
+  date,
+  onChangeDate,
 }) => {
-  const [keyword, setKeyword] = useState('');
-  const [date, setDate] = useState('');
-
-  const handleSearch = () => {
-    console.log('Search:', { keyword, date, category, source });
-  };
-
   return (
     <div className="mb-8 space-y-4">
       <div className="flex flex-col sm:flex-row gap-4">
-        <Input
-          type="text"
-          placeholder="Search articles..."
-          value={keyword}
-          onChange={(e) => setKeyword(e.target.value)}
-          className="flex-grow"
-        />
-        <Button onClick={handleSearch}>Search</Button>
-      </div>
-      <div className="flex flex-col sm:flex-row gap-4">
-        <Select value={date} onValueChange={setDate}>
+        <Select value={date} onValueChange={onChangeDate}>
           <SelectTrigger className="w-full sm:w-[180px]">
             <SelectValue placeholder="Filter by date" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="today">Today</SelectItem>
-            <SelectItem value="this-week">This Week</SelectItem>
-            <SelectItem value="this-month">This Month</SelectItem>
+            {DateFilter.map(({ title, value }) => (
+              <SelectItem key={title} value={value.toString()}>
+                {title}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
         <Select value={category} onValueChange={onChangeCategory}>

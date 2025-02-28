@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
 import axios from 'axios';
 
-import { NewsResourcesEnum, NewsResponse } from '@/types';
+import { NewsResponse } from '@/types';
 import { calculateData, preparedRequestParams } from './service';
 import axiosInstance from './axiosInstance';
-import { NewsResources } from '@/const';
+import { NewsResources, NewsResourcesEnum } from '@/const';
 
 export async function GET(req: Request): Promise<Response> {
   try {
@@ -18,7 +18,7 @@ export async function GET(req: Request): Promise<Response> {
           const apiKey = process.env[`${key}_API_KEY`] || '';
           const url = process.env[`${key}_BASE_URL`] || '';
 
-          const { queryParams, params } = preparedRequestParams({
+          const { queryParams } = preparedRequestParams({
             searchParams,
             sourceName: key,
             apiKey,
@@ -26,8 +26,7 @@ export async function GET(req: Request): Promise<Response> {
 
           try {
             const response = await axiosInstance.get<NewsResponse>(
-              `${url}?${queryParams}`,
-              { params }
+              `${url}?${queryParams}`
             );
 
             return calculateData(response, key);
@@ -53,7 +52,7 @@ export async function GET(req: Request): Promise<Response> {
             process.env[`${source.toUpperCase()}_BASE_URL`] ||
             '';
 
-          const { queryParams, params } = preparedRequestParams({
+          const { queryParams } = preparedRequestParams({
             searchParams,
             sourceName: source,
             apiKey,
@@ -61,8 +60,7 @@ export async function GET(req: Request): Promise<Response> {
 
           try {
             const response = await axiosInstance.get<NewsResponse>(
-              `${url}?${queryParams}`,
-              { params }
+              `${url}?${queryParams}`
             );
 
             return calculateData(response, source);

@@ -1,5 +1,6 @@
 import { URLSearchParams } from 'url';
-import { NewsResponse, Article, NewsResourcesEnum } from '@/types';
+import { NewsResponse, Article } from '@/types';
+import { NewsResourcesEnum } from '@/const';
 
 export function preparedRequestParams({
   searchParams,
@@ -9,15 +10,13 @@ export function preparedRequestParams({
   searchParams: URLSearchParams;
   sourceName: NewsResourcesEnum;
   apiKey: string;
-}): { queryParams: string | URLSearchParams; params: Record<string, unknown> } {
+}): { queryParams: string | URLSearchParams } {
   const queryParams: string | URLSearchParams = new URLSearchParams({
     q: searchParams.get('category') || 'tech',
-    // from: searchParams.get('date') || '',
+    from: searchParams.get('date') || '',
     pageSize: searchParams.get('pageSize') || '20',
     page: searchParams.get('page') || '1',
   });
-
-  const params: Record<string, unknown> = {};
 
   if (sourceName === NewsResourcesEnum.NewsApi) {
     queryParams.set('apiKey', apiKey);
@@ -28,10 +27,11 @@ export function preparedRequestParams({
   }
 
   if (sourceName === NewsResourcesEnum.NewyorkTimes) {
+    queryParams.set('beginDate', searchParams.get('date') || '');
     queryParams.set('api-key', apiKey);
   }
 
-  return { queryParams, params };
+  return { queryParams };
 }
 
 export function calculateData(
