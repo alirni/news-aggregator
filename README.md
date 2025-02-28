@@ -107,20 +107,6 @@ NEW_YORK_TIMES_API_KEY=your_api_key
 NEW_YORK_TIMES_BASE_URL=https://api.example.com
 ```
 
-## Running Tests
-
-To run tests, use the following command:
-
-```sh
-npm run test
-# or
-yarn test
-# or
-pnpm test
-```
-
-This will execute all unit and integration tests located in the `/tests` directory.
-
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
