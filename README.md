@@ -22,9 +22,8 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 ## About the App
 
-This news aggregator application allows users to view the latest news from various sources in one place. It is built using Next.js and leverages server-side rendering for fast performance and SEO benefits. The app also includes features such as:
+This news aggregator application allows users to view the latest news from various sources in one place. It is built using Next.js. The app also includes features such as:
 
-- User authentication
 - Personalized news feeds
 - Search functionality
 - Responsive design
@@ -98,8 +97,14 @@ To build and run the project within a Docker container, follow these steps:
 To run this project, you will need to add the following environment variables to your `.env.local` file:
 
 ```
-API_KEY=your_api_key
-NEXT_PUBLIC_API_URL=https://api.example.com
+NEWS_API_API_KEY=your_api_key
+NEWS_API_BASE_URL=https://api.example.com
+
+THE_GUARDIAN_API_KEY=your_api_key
+THE_GUARDIAN_BASE_URL=https://api.example.com
+
+NEW_YORK_TIMES_API_KEY=your_api_key
+NEW_YORK_TIMES_BASE_URL=https://api.example.com
 ```
 
 ## Running Tests
