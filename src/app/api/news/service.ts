@@ -34,7 +34,9 @@ export function preparedRequestParams({
   }
 
   if (sourceName === NewsResourcesEnum.NewyorkTimes) {
-    queryParams.set('beginDate', searchParams.get('date') || '');
+    if (searchParams.get('date')) {
+      queryParams.set('beginDate', searchParams.get('date') || '');
+    }
     queryParams.set('api-key', apiKey);
   }
 
