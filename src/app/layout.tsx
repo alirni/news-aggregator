@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   description: 'Your personalized news feed',
 };
 
+/**
+ * Root layout component for the application.
+ */
 export default function RootLayout({
   children,
 }: {

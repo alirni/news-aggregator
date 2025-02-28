@@ -2,6 +2,13 @@ import { URLSearchParams } from 'url';
 import { NewsResponse, Article } from '@/types';
 import { NewsResourcesEnum } from '@/const';
 
+/**
+ * Prepares the request parameters for the news API.
+ * @param searchParams - The search parameters.
+ * @param sourceName - The name of the news source.
+ * @param apiKey - The API key.
+ * @returns The query parameters.
+ */
 export function preparedRequestParams({
   searchParams,
   sourceName,
@@ -34,6 +41,12 @@ export function preparedRequestParams({
   return { queryParams };
 }
 
+/**
+ * Calculates the data from the news API response.
+ * @param response - The API response.
+ * @param sourceName - The name of the news source.
+ * @returns The news response.
+ */
 export function calculateData(
   response: any,
   sourceName: NewsResourcesEnum

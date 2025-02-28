@@ -2,6 +2,13 @@ import { NewsResourcesEnum } from '@/const';
 import { CategoryType, NewsFeedPost } from '@/types';
 import axios from 'axios';
 
+/**
+ * Fetches news articles based on the provided filters.
+ * @param source - The news source.
+ * @param category - The category of news.
+ * @param date - The date filter.
+ * @returns A promise that resolves to an array of news feed posts.
+ */
 export const getNews = async ({
   source,
   category,

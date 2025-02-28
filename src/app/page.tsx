@@ -7,6 +7,9 @@ import { CategoryType, NewsFeedPost } from '@/types';
 import { toast } from 'sonner';
 import { NewsResourcesEnum } from '@/const';
 
+/**
+ * Home page component for the news aggregator.
+ */
 export default function Home() {
   const [posts, setPosts] = useState<NewsFeedPost[]>([]);
   const [source, setSource] = useState<NewsResourcesEnum>();

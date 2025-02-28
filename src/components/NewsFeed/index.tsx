@@ -7,6 +7,9 @@ import { ArticleModal } from '../ArticleModal';
 import { NewsFeedProps } from './type';
 import { toast } from 'sonner';
 
+/**
+ * Component for displaying a feed of news articles.
+ */
 export const NewsFeed: FC<NewsFeedProps> = ({ posts, isLoading }) => {
   const [gatheredPosts, setGatheredPosts] = useState<Article[]>([]);
 

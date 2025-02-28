@@ -20,6 +20,53 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## About the App
+
+This news aggregator application allows users to view the latest news from various sources in one place. It is built using Next.js and leverages server-side rendering for fast performance and SEO benefits. The app also includes features such as:
+
+- User authentication
+- Personalized news feeds
+- Search functionality
+- Responsive design
+
+## Project Structure
+
+The project structure is as follows:
+
+```
+/news-aggregator
+  ├── src
+  │   ├── api
+  │   ├── const
+  │   ├── lib
+  │   ├── types
+  │   ├── components
+  │   │   ├── ArticleCard
+  │   │   ├── ArticleModal
+  │   │   ├── Header
+  │   │   ├── NewsFeed
+  │   │   ├── SearchAndFilter
+  │   │   └── ui
+  │   ├── app
+  │   │   ├── api
+  │   │   │   └── news
+  │   │   │   │   ├── axiosInstance
+  │   │   │   │   ├── route
+  │   │   │   │   ├── service
+  │   │   │   │   └── type
+  │   │   ├── layout
+  │   │   └── page
+  ├── .gitignore
+  ├── package.json
+  └── README.md
+```
+
+- **.env.local**: Environment variables for local development.
+- **docker-compose.yml**: Docker configuration file.
+- **next.config.js**: Next.js configuration file.
+- **package.json**: Project dependencies and scripts.
+- **README.md**: Project documentation.
+
 ## Running the Project with Docker
 
 To build and run the project within a Docker container, follow these steps:
@@ -45,6 +92,29 @@ To build and run the project within a Docker container, follow these steps:
     ```sh
     docker-compose down
     ```
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your `.env.local` file:
+
+```
+API_KEY=your_api_key
+NEXT_PUBLIC_API_URL=https://api.example.com
+```
+
+## Running Tests
+
+To run tests, use the following command:
+
+```sh
+npm run test
+# or
+yarn test
+# or
+pnpm test
+```
+
+This will execute all unit and integration tests located in the `/tests` directory.
 
 ## Learn More
 

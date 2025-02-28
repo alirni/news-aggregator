@@ -11,6 +11,9 @@ import {
 import { Category, DateFilter, NewsResources } from '@/const';
 import { SearchAndFilterProps } from './type';
 
+/**
+ * Component for searching and filtering news articles.
+ */
 export const SearchAndFilter: FC<SearchAndFilterProps> = ({
   source,
   onChangeSource,
